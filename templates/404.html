@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block title %}404 – Seite nicht gefunden{% endblock %}
+
+{% block content %}
+  <h2>404 – Seite nicht gefunden</h2>
+  <p>Die von dir angeforderte Seite existiert leider nicht.</p>
+  <p><a class="btn" href="{{ url_for('index') }}">Zur Startseite</a></p>
+{% endblock %}

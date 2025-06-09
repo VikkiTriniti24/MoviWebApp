@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Filme von {{ user.name }} – MovieWebApp{% endblock %}
+
+{% block content %}
+  <h1>Filme von {{ user.name }}</h1>
+
+  <p>
+    <a href="{{ url_for('add_movie', user_id=user.id) }}" class="btn">Neuen Film hinzufügen</a>
+  </p>
+
+  <ul class="movie-list">
+    {% for movie in movies %}
+      <li class="movie-item">
+        <h2>{{ movie.title }}{% if movie.year %} ({{ movie.year }}){% endif %}</h2>
+        <p>
+          <a href="{{ url_for('movie_reviews', movie_id=movie.id) }}">Reviews ansehen</a>
+        </p>
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock %}
+

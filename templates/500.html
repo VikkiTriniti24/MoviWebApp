@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block title %}500 – Interner Serverfehler{% endblock %}
+
+{% block content %}
+  <h2>500 – Interner Serverfehler</h2>
+  <p>Oops, da ist etwas schiefgelaufen.</p>
+  <p><a class="btn" href="{{ url_for('index') }}">Zur Startseite</a></p>
+{% endblock %}

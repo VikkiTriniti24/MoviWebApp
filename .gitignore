@@ -1,0 +1,29 @@
+# Created by venv; see https://docs.python.org/3/library/venv.html
+.venv/bin
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# virtualenv
+.venv/
+venv/
+
+# IDEs & OS
+.vscode/
+.idea/
+.DS_Store
+
+# SQLite
+moviwebapp.db
+
+# Logs
+*.log
+
+# pytest cache
+.pytest_cache/
+
+# Coverage
+htmlcov/
+.coverage

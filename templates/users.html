@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}Users – MovieWebApp{% endblock %}
+
+{% block content %}
+  <h1>Users</h1>
+  <h2>Neuen User hinzufügen</h2>
+  <form method="POST" action="{{ url_for('add_user') }}">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" required>
+    <button type="submit">Hinzufügen</button>
+  </form>
+
+  <ul class="movie-list">
+    {% for user in users %}
+      <li class="movie-item">
+        <a href="{{ url_for('user_movies', user_id=user.id) }}">{{ user.name }}</a>
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock %}

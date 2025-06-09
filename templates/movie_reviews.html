@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}Reviews for {{ movie.title }}{% endblock %}
+{% block content %}
+  <h1>Reviews for {{ movie.title }}</h1>
+
+  <form method="POST" action="{{ url_for('movie_reviews', movie_id=movie.id) }}">
+    <select name="user_id" required>
+      {% for u in users %}
+        <option value="{{ u.id }}">{{ u.name }}</option>
+      {% endfor %}
+    </select><br>
+    <textarea name="review_text" required></textarea><br>
+    <input type="number" name="rating" min="1" max="5" required><br>
+    <button type="submit">Submit Review</button>
+  </form>
+
+  <hr>
+
+  {% for review in reviews %}
+    <p><strong>{{ review.user.name }}</strong> bewertete mit {{ review.rating }}/5<br>
+       {{ review.text }}</p>
+    <hr>
+  {% endfor %}
+{% endblock %}
+
+
