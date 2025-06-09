@@ -1,17 +1,13 @@
 from flask import Flask, render_template, request, redirect, url_for, abort
 from sqlalchemy.orm import joinedload
-
 from datamanager.sqlite_data_manager import SQLiteDataManager, User, Movie, Review
 
-# ─── Flask-App und DataManager ────────────────────────────────────────────────
 
 app = Flask(__name__)
 
-# Standard-Datenbank (für Tests überschreibbar via app.data_manager = ...)
 app.data_manager = SQLiteDataManager('moviwebapp.db')
 dm = app.data_manager
 
-# ─── Web-Seiten ────────────────────────────────────────────────────────────────
 
 @app.route('/')
 def index():
@@ -53,8 +49,6 @@ def add_movie(user_id):
         movie = Movie(title=title, year=year, user_id=user_id)
         dm.add_movie(movie)
         return redirect(url_for('user_movies', user_id=user_id))
-
-    # GET: Formular anzeigen
     return render_template('add_movie.html', user=user)
 
 

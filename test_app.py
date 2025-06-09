@@ -6,7 +6,6 @@ from datamanager.sqlite_data_manager import SQLiteDataManager, User
 def client():
     app.config['TESTING'] = True
 
-    # Datenmanager ohne Parameter instanziieren und Datenbank frisch aufsetzen
     app.data_manager = SQLiteDataManager()
     app.data_manager.reset_database()
 
@@ -20,7 +19,6 @@ def client():
 def test_homepage(client):
     rv = client.get('/')
     assert rv.status_code == 200
-    # Auf der Startseite sollte unser TestUser auftauchen
     assert b"TestUser" in rv.data
 
 def test_add_user(client):

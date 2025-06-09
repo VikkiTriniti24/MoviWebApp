@@ -4,7 +4,6 @@ from flask import Blueprint, jsonify, request
 from datamanager.sqlite_data_manager import SQLiteDataManager, User
 
 api = Blueprint('api', __name__)
-# DataManager-Instanz (kein Parameter nötig)
 dm = SQLiteDataManager()
 
 @api.route('/users', methods=['GET', 'POST'])
@@ -13,7 +12,6 @@ def users():
         all_users = dm.get_all_users()
         return jsonify([{'id': u.id, 'name': u.name} for u in all_users])
 
-    # POST: neuen User anlegen
     data = request.get_json()
     if not data or 'name' not in data:
         return jsonify({'error': 'Missing name field'}), 400
@@ -38,7 +36,6 @@ def user_movies(user_id):
         movies = dm.get_user_movies(user_id)
         return jsonify([{'id': m.id, 'title': m.title, 'year': m.year} for m in movies])
 
-    # POST: neuen Film hinzufügen
     data = request.get_json()
     if not data or 'title' not in data:
         return jsonify({'error': 'Missing movie title'}), 400
@@ -73,7 +70,6 @@ def movie_reviews(movie_id):
             for r in reviews
         ])
 
-    # POST: neue Review anlegen
     data = request.get_json()
     if not data or not all(k in data for k in ('user_id', 'text', 'rating')):
         return jsonify({'error': 'Missing review fields'}), 400
